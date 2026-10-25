@@ -1,11 +1,11 @@
 # Technitium DNS Server blocklist
 # Updated: 2026-10-25
 # Sources: dns1.macarthur.systems and dns3.macarthur.systems
-# Scope: Last Week cluster blocked statistics; recent blocked query-log samples.
+# Scope: weekly cluster statistics plus complete uploaded 2026-10-24 logs.
 # Curated selection, not an exhaustive malicious-domain classification.
 # Format: one lowercase domain per line; entries also block child domains.
 # Deduplicated and sorted; redundant observed child entries removed.
-# Domains: 185
+# Domains: 193
 # See README.md for selection policy, limitations, and installation.
 
 65vjls.cdn-settings.appsflyersdk.com
@@ -23,6 +23,7 @@ aax-eu.amazon-adsystem.com
 aax-events-cell02-cf.eu-central.3px.axp.amazon-adsystem.com
 aax-events-cell02-cf.eu-west.ono.axp.amazon-adsystem.com
 aax.amazon-adsystem.com
+acdn.adnxs.com
 ad.doubleclick.net
 ad.yieldlab.net
 ade.googlesyndication.com
@@ -44,9 +45,12 @@ analytics.avcdn.net
 analytics.google.com
 analytics.tiktok.com
 analytics.twitter.com
+api.mixpanel.com
+api2.amplitude.com
 app-measurement.com
 apps.smartadserver.com
 b.nl3.eu.criteo.com
+bam.nr-data.net
 bat.bing.com
 bat.bing.net
 browser.pipe.aria.microsoft.com
@@ -82,6 +86,7 @@ dpcomepost.tt.omtrdc.net
 dpm.demdex.net
 dynamic.criteo.com
 eb2.3lift.com
+enhdjn-cdn-settings.appsflyersdk.com
 enterpriseholdingsinc.sc.omtrdc.net
 eoncom.tt.omtrdc.net
 error-tracking.reddit.com
@@ -123,6 +128,7 @@ mobiletelemetry.ebay.com
 ms.applovin.com
 ms.applvn.com
 ms4.applvn.com
+nqwfg9-cdn-settings.appsflyersdk.com
 openads-cdn.adsrvr.org
 pagead2.googlesyndication.com
 ping.chartbeat.net
@@ -141,6 +147,7 @@ qbixbh.cdn-settings.appsflyersdk.com
 qbrere.cdn-settings.appsflyersdk.com
 qbrere.launches.appsflyersdk.com
 region1.google-analytics.com
+reqhfg-cdn-settings.appsflyersdk.com
 retailmedia-static.criteo.com
 rt.applovin.com
 rt.applvn.com
@@ -151,6 +158,7 @@ s2.adform.net
 sb.scorecardresearch.com
 secure-assets.rubiconproject.com
 securepubads.g.doubleclick.net
+sessions.bugsnag.com
 settings.crashlytics.com
 snap.licdn.com
 ssb-global.smartadserver.com

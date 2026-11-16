@@ -61,6 +61,53 @@ Retained the original exclusions. In particular, high request counts and NXDOMAI
 
 Validated all 193 rules for DNS label syntax/length, lowercase spelling, sorted order, uniqueness and absence of parent/child redundancy; confirmed all eight additions occur in the uploaded logs. Existing rules remain supported by the earlier weekly statistics even if absent on this particular day. No runtime deployment, application regression test or performance benchmark was performed.
 
+## Current-console review, 16 November 2026
+
+The current list contains **212 rules**, sorted alphabetically by base domain and then full hostname. This review adds 19 exact observed hostnames to the previous 193 rules.
+
+Evidence collected from each console with **Last Day** selected and its own node selected:
+
+| View | dns1 primary | dns3 secondary |
+| --- | ---: | ---: |
+| Top 1000 Blocked Domains: returned domains | 289 | 290 |
+| Top 1000 Domains: returned domains | 910 | 542 |
+| Recent Query Logs: returned records | 140 | 122 |
+
+The combined blocked-domain views contain 290 distinct names. Per-node observations overlap; they are not independent user actions. The recent query-log results span approximately 09:55–10:16 Local on 16 November. They cover only the records available at the time, not a complete day. Today's text-log views were also inspected: dns1 displayed a truncated prefix through approximately 02:06 Local and dns3 through approximately 02:59 Local. The UI caps each text view at 2 MB. No complete export of the current daily files was available for this review. The current views must not be described as a full-log audit.
+
+| Added hosts | Curation rationale |
+| --- | --- |
+| bid.g.doubleclick.net; cm.g.doubleclick.net | Existing advertising-domain category |
+| cm.adform.net | Existing advertising-domain category |
+| dsum-sec.casalemedia.com | Existing advertising-domain category |
+| ft74xq.cdn-settings.appsflyersdk.com; ft74xq.inapps.appsflyersdk.com | Existing attribution SDK category |
+| image8.pubmatic.com; simage2.pubmatic.com | Existing advertising-domain category |
+| mboxedge37.tt.omtrdc.net; rewedigital.sc.omtrdc.net | Existing analytics-domain category |
+| ms4.applovin.com | Existing advertising SDK category |
+| pixel.rubiconproject.com; token.rubiconproject.com | Existing advertising-domain category |
+| ssp-sync.criteo.com | Existing advertising-domain category |
+| sync.inmobi.com | Existing advertising SDK category |
+| sync.taboola.com | Existing advertising-domain category |
+| j.clarity.ms | Clarity endpoint, documented single-letter host pattern |
+| cdn-settings.segment.com | Segment analytics SDK configuration |
+| in.appcenter.ms | App Center log ingestion |
+
+All additions appear in the collected current per-node statistics. Curation suitability is a judgement, not a maliciousness verdict or proof that blocking has no application impact. Host-specific purpose for names in existing vendor categories is inferred from the domain and endpoint naming, except where supported directly by vendor documentation. No new broad parent-domain rules were introduced. Kept existing exclusions for security, authentication, connectivity, consent-management, general service endpoints and uncertain names. High volume, NXDOMAIN or existing upstream blocking alone does not qualify a name for inclusion.
+
+Additional primary references:
+- [Clarity endpoint patterns](https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-csp)
+- [Segment SDK endpoint change](https://github.com/segmentio/analytics-android/blob/master/CHANGELOG.md)
+- [App Center ingestion implementation](https://github.com/microsoft/appcenter-sdk-apple/blob/develop/AppCenter/AppCenter/Internals/Ingestion/MSACAppCenterIngestion.m)
+- [App Center ingestion-host discussion](https://github.com/microsoft/appcenter-sdk-apple/issues/2518)
+
+Validated 212 rules for syntax, lowercase spelling, uniqueness, base-domain ordering and absence of parent/child redundancy. Confirmed all 19 additions occur in the collected current statistics. No live installation, application regression test or performance benchmark was performed.
+
+### Viewer cap for future reviews
+
+Upstream's [logs.js](https://github.com/TechnitiumSoftware/DnsServer/blob/master/DnsServerCore/www/js/logs.js) hard-codes `limit=2` for the log viewer. [WebServiceLogsApi.cs](https://github.com/TechnitiumSoftware/DnsServer/blob/master/DnsServerCore/WebServiceLogsApi.cs) interprets the limit in units of 1024 × 1024 bytes; the Download action omits the viewer limit. Raising the viewer cap is a web-console source change, not a blocklist change.
+
+A 64 MB viewer cap is a proposed operational choice based on the displayed retained-file sizes, not a measured browser-performance recommendation. It has not been applied. A viewer source change may be overwritten by Technitium upgrades. Full downloads remain preferable for reproducible complete-file analysis. No recurring optimisation task was created.
+
 ## Technitium format and optimisation
 
 blocklist.txt uses ASCII lowercase domain names, one per line, LF line endings and hash comments. No IP-address prefixes, regular expressions or browser-specific filter options are required.

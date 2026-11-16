@@ -7,7 +7,7 @@
 # Format: one lowercase domain per line; entries also block child domains.
 # Sorted alphabetically by base domain, then by full hostname within each group.
 # Deduplicated; redundant observed child entries removed.
-# Domains: 212
+# Domains: 213
 # See README.md for selection policy, limitations, and installation.
 
 gcdn.2mdn.net
@@ -23,6 +23,7 @@ track.adform.net
 acdn.adnxs.com
 cdn.adnxs.com
 ib.adnxs.com
+nym2-ib.adnxs.com
 zne1-ib.adnxs.com
 zne2-ib.adnxs.com
 static.ads-twitter.com

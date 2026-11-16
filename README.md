@@ -63,7 +63,7 @@ Validated all 193 rules for DNS label syntax/length, lowercase spelling, sorted 
 
 ## Current-console review, 16 November 2026
 
-The current list contains **212 rules**, sorted alphabetically by base domain and then full hostname. This review adds 19 exact observed hostnames to the previous 193 rules.
+The initial current-console update contained **212 rules**, sorted alphabetically by base domain and then full hostname. This review adds 19 exact observed hostnames to the previous 193 rules.
 
 Evidence collected from each console with **Last Day** selected and its own node selected:
 
@@ -109,6 +109,16 @@ Upstream's [logs.js](https://github.com/TechnitiumSoftware/DnsServer/blob/master
 Applied a 64 MB viewer cap on 16 November 2026 to CT100 and CT103 in `/opt/technitium/dns/www/js/logs.js`, changing only the viewer request from `limit=2` to `limit=64`. Original files were backed up under `/var/backups/technitium/` in each container. Both public consoles were verified to serve the updated script; after reloading, today's log views displayed 5,256,370 and 5,111,892 characters respectively without the truncation marker. Both Technitium services remained active; no service restart was performed.
 
 The 64 MB choice is based on displayed retained-file sizes, not a measured browser-performance recommendation. Technitium upgrades may overwrite this local web-console change. Full downloads remain preferable for reproducible complete-file analysis. This changes the viewer limit, not log retention, and does not create a recurring optimisation task.
+
+## Expanded-view follow-up, 16 November 2026
+
+The current list contains **213 rules** after adding `nym2-ib.adnxs.com`.
+
+With the viewer cap raised, reviewed the complete currently displayed daily logs from midnight through approximately 10:25 Local on 16 November: 30,410 QNAME records and 845 distinct normalised names on dns1, and 29,681 records and 677 distinct names on dns3. Combined: 60,091 records and 1,057 distinct names, without deduplicating records across servers. Neither displayed daily log contained the truncation marker. These are complete views of the files at capture time, not the rest of the unfinished day or every retained daily file.
+
+`nym2-ib.adnxs.com` appeared in dns3's log at 07:56:28 Local. It was also present in the earlier domain statistics, so this corrects a curation omission rather than a hostname discoverable only after increasing the cap. Its advertising role is inferred from the existing `adnxs.com` category and Microsoft's documented `{DATACENTER}-ib.adnxs.com` endpoint pattern: [Xandr integration FAQ](https://learn.microsoft.com/en-us/xandr/supply-partners/faq-integration-process). Blocking suitability remains a curation judgement; no application regression test was performed.
+
+Validated the single-rule addition, unchanged existing entries, 213 unique rules, base-domain ordering, and absence of parent/child redundancy. No broader vendor-parent rule was added.
 
 ## Technitium format and optimisation
 

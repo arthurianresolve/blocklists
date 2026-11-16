@@ -106,7 +106,9 @@ Validated 212 rules for syntax, lowercase spelling, uniqueness, base-domain orde
 
 Upstream's [logs.js](https://github.com/TechnitiumSoftware/DnsServer/blob/master/DnsServerCore/www/js/logs.js) hard-codes `limit=2` for the log viewer. [WebServiceLogsApi.cs](https://github.com/TechnitiumSoftware/DnsServer/blob/master/DnsServerCore/WebServiceLogsApi.cs) interprets the limit in units of 1024 × 1024 bytes; the Download action omits the viewer limit. Raising the viewer cap is a web-console source change, not a blocklist change.
 
-A 64 MB viewer cap is a proposed operational choice based on the displayed retained-file sizes, not a measured browser-performance recommendation. It has not been applied. A viewer source change may be overwritten by Technitium upgrades. Full downloads remain preferable for reproducible complete-file analysis. No recurring optimisation task was created.
+Applied a 64 MB viewer cap on 16 November 2026 to CT100 and CT103 in `/opt/technitium/dns/www/js/logs.js`, changing only the viewer request from `limit=2` to `limit=64`. Original files were backed up under `/var/backups/technitium/` in each container. Both public consoles were verified to serve the updated script; after reloading, today's log views displayed 5,256,370 and 5,111,892 characters respectively without the truncation marker. Both Technitium services remained active; no service restart was performed.
+
+The 64 MB choice is based on displayed retained-file sizes, not a measured browser-performance recommendation. Technitium upgrades may overwrite this local web-console change. Full downloads remain preferable for reproducible complete-file analysis. This changes the viewer limit, not log retention, and does not create a recurring optimisation task.
 
 ## Technitium format and optimisation
 
